@@ -6,8 +6,6 @@ import {
   PropertyPaneCheckbox,
   PropertyPaneDropdown,
   PropertyPaneToggle
-  
-
 } from '@microsoft/sp-webpart-base';
 import { escape } from '@microsoft/sp-lodash-subset';
 
@@ -22,7 +20,7 @@ export interface IYWebPartProps {
  
 }
 
-export default class YWebPart extends BaseClientSideWebPart<IYWebPartProps> {
+export interface  YWebPart extends BaseClientSideWebPart<IYWebPartProps> {
 
   public render(): void {
     this.domElement.innerHTML = `
@@ -42,10 +40,6 @@ export default class YWebPart extends BaseClientSideWebPart<IYWebPartProps> {
       </div>`;
   }
 
-  protected get dataVersion(): Version {
-    return Version.parse('1.0');
-  }
-
   protected getPropertyPaneConfiguration(): IPropertyPaneConfiguration {
     return {
       pages: [
@@ -57,14 +51,33 @@ export default class YWebPart extends BaseClientSideWebPart<IYWebPartProps> {
             {
               groupName: strings.BasicGroupName,
               groupFields: [
-                PropertyPaneTextField('description', {
-                  label: strings.DescriptionFieldLabel
-                })
-              ]
+              PropertyPaneTextField('description', {
+                label: 'Description'
+              }),
+              PropertyPaneTextField('test', {
+                label: 'Multi-line Text Field',
+                multiline: true
+              }),
+              PropertyPaneCheckbox('test1', {
+                text: 'Checkbox'
+              }),
+              PropertyPaneDropdown('test2', {
+                label: 'Dropdown',
+                options: [
+                  { key: '1', text: 'One' },
+                  { key: '2', text: 'Two' },
+                  { key: '3', text: 'Three' },
+                  { key: '4', text: 'Four' }
+                ]}),
+              PropertyPaneToggle('test3', {
+                label: 'Toggle',
+                onText: 'On',
+                offText: 'Off'
+              })
+            ]
             }
           ]
         }
       ]
     };
-  }
-}
+   }
