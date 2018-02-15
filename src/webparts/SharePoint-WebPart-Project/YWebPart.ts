@@ -2,7 +2,12 @@ import { Version } from '@microsoft/sp-core-library';
 import {
   BaseClientSideWebPart,
   IPropertyPaneConfiguration,
-  PropertyPaneTextField
+  PropertyPaneTextField,
+  PropertyPaneCheckbox,
+  PropertyPaneDropdown,
+  PropertyPaneToggle
+  
+
 } from '@microsoft/sp-webpart-base';
 import { escape } from '@microsoft/sp-lodash-subset';
 
@@ -11,6 +16,10 @@ import * as strings from 'YWebPartStrings';
 
 export interface IYWebPartProps {
   description: string;
+  test1: string;
+  test2: string;
+  test3: string;
+ 
 }
 
 export default class YWebPart extends BaseClientSideWebPart<IYWebPartProps> {
